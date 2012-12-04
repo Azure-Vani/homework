@@ -1,0 +1,58 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+
+\newcommand{\Limit}{\displaystyle \lim_{n \rightarrow +\infty}} 
+\newcommand{\hei}{\CJKfamily{hei}}
+
+\title{第七次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{习题2}
+\subsection*{(1)}
+$\forall \epsilon > 0$, $\exists \delta > 0$ 使得 $0 < x_0-x < \delta$ 时，$|f(x) - A| < \delta$
+\subsection*{(2)}
+$\forall M < 0$, $\exists \delta > 0$ 使得 $0 < |x_0 - x| < \delta$ 时 $f(x) < M$
+\subsection*{(3)}
+$\forall \epsilon > 0$, $\exists \delta > 0$ 使得 $x > \delta$ 时 $|f(x) - l| < \delta$
+\subsection*{(4)}
+$\forall M > 0$, $\exists \delta > 0$ 使得 $x > \delta$ 时 $f(x) < M$
+\section*{习题4}
+\subsection*{(1)}
+$\exists M > 0$, $\forall \delta > 0$ 使得 $x > \delta$ 时 $f(x) < M$
+\subsection*{(2)}
+$\forall M > 0$, $\forall \delta > 0$,$\exists x 0 < |x_0 - x| < \delta$ 使得 $|f(x)| > M$
+\section*{习题6}
+\subsection*{(2)}
+$\Limit \frac{x^3-3x+5}{2x^3+x^2-6} = \Limit \frac{1-\frac{3}{x^2}+\frac{5}{x^3}}{2+\frac{1}{x^2}-\frac{6}{x^3}} = \frac{1}{2}$
+\subsection*{(4)}
+$\displaystyle \lim_{n \to 3} \frac{\sqrt{1+t}-2}{t-3} = \frac{t-3}{\sqrt{t+1}+2} = \frac{1}{4}$
+\subsection*{(6)}
+$\Limit \frac{\sqrt{x}\sin x}{x+1} = \Limit \frac{\sin x}{\sqrt{x} + \frac{1}{\sqrt{x}}} = 0$
+\subsection*{(8)}
+$\Limit (\sqrt{x+\sqrt{x+\sqrt{x}}} - \sqrt{x})$
+\section*{习题7}
+$\displaystyle \lim_{x\to 0+0}x\frac{1}{x} \le \lim_{x \to 0+0} x[\frac{1}{x}] \le \lim_{x\to 0+0}x([\frac{1}{x}]+1)$
+
+$\displaystyle 1 \le \lim_{x\to 0+0}[\frac{1}{x}] \le 1$
+
+$\displaystyle \lim_{x\to 0+0}[\frac{1}{x}] = 1$
+\end{document}

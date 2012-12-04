@@ -1,0 +1,114 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+
+\newcommand{\hei}{\CJKfamily{hei}}
+\newcommand{\Limit}{\displaystyle \lim_{n \rightarrow \infty}}
+
+\title{第四次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section*{习题11}
+\subsection*{(1)}
+不失一般性，我们假设$a \ge b$, 
+
+当$a>b$时, $\exists N \in \mathbb{N}$ s.t. $\forall n > N, x_n \ge y_n$
+
+所以$\exists N \in \mathbb{N} , \forall n > N, \max\{x_n, y_n\} = x_N$
+
+即$\Limit \max\{x_n, y_n\} = \Limit x_n = a = \max\{a, b\}$
+
+当$a=b$时, $\forall \epsilon > 0$, $\exists N_1 \in \mathbb{N}$ 使得 $\forall n > N_1, |x_n - a| < \epsilon$, $\exists N_2 \in \mathbb{N}$ 使得 $\forall n > N_2, |y_n - a| < \epsilon$
+
+所以$\forall n > \max\{N_1, N_2\}, |\max\{a_n, b_n\} - a| < \epsilon$, 即$\Limit \max\{x_n, y_n\} = a$
+\subsection*{(2)}
+不失一般性，我们假设$a \le b$,
+
+当$a<b$时, $\exists N \in \mathbb{N}$ s.t. $\forall n > N, x_n \le y_n$
+
+所以$\exists N \in \mathbb{N}$ s.t. $\forall n > N \min\{x_n, y_n\} = x_n$
+
+即$\Limit \min\{x_n, y_n\} = \Limit x_N = a = \min\{a, b\}$
+
+当$a=b$时, $\forall \epsilon > 0$, $\exists N_1 \in \mathbb{N}$ 使得 $\forall n > N_1, |x_n - a| < \epsilon$, $\exists N_2 \in \mathbb{N}$ 使得 $\forall n > N_2, |y_n - a| < \epsilon$
+
+所以$\forall n > \max\{N_1, N_2\}, |\min\{a_n, b_n\} - a| < \epsilon$, 即$\Limit \min\{x_n, y_n\} = a$
+\section*{习题14}
+\subsection*{(1)}
+$\frac{1 \cdot 3 \cdots (2n-1)}{2 \cdot 4  \cdots (2n)} \cdot \frac{3 \cdot 5 \cdots (2n+1)}{2 \cdot 4 \cdots (2n)} = \frac{(1\cdot3)\cdot(3\cdot5)\cdots(2n-1)\cdot(2n+1)}{2^2\cdot4^2\cdots(2n)^2}$
+
+所以$x_n \cdot x_n \cdot (2n+1) < 1$, 即$x_n < \frac{1}{\sqrt{2n+1}}$, 因为$\Limit \frac{1}{\sqrt{2n+1}} = 0$, 所以由两边夹定理可得$\Limit x_n = 0$
+\subsection*{(2)}
+$\displaystyle \frac{2n+2}{\sqrt{n^2}} \le \sum_{k=n^2}^{(n+1)^2} \frac{1}{\sqrt{k}} \le \frac{2n+2}{\sqrt{(n+1)^2}}$
+
+因为$\frac{2n+2}{\sqrt{n^2}} = 2+\frac{2}{n}$, 所以$\Limit \frac{2n+2}{\sqrt{n^2}} = 2$
+
+又因为$\frac{2n+2}{\sqrt{(n+1)^2}} = 2$
+
+由两边夹定理, $\Limit \sum_{k=n^2}^{(n+1)^2} \frac{1}{\sqrt{k}} = 2$
+\subsection*{(3)}
+$\forall n > 2, 1 \le \sqrt[n]{n\ln n} \le \sqrt[n]{n}\sqrt[n]{n}$
+
+又因为$\Limit \sqrt[n]{n} = 1$, 由两边夹定理可得$\Limit \sqrt[n]{n \ln n} = 1$
+\section*{习题16}
+假设$x_n = \frac{1}{A} - y_n, y_1 = \epsilon, 0 < \epsilon < \frac{1}{A}$
+
+显然$x_1$满足上式, 假如$x_n$满足, 
+
+\begin{align*}
+	x_{n+1} &= x_n(2-Ax_n)\\
+		     &= (\frac{1}{A} - y_n)[2-A(\frac{1}{A}-y_n)]\\
+		     &=\frac{1}{A} - y_n + y_n - Ay_n^2\\
+	&=\frac{1}{A} - Ay_n^2
+\end{align*}
+
+所以$x_n = \frac{1}{A} - y_n$, 其中$y_1 = \epsilon, y_{n+1} = Ay_n^2$
+
+因为$1 < \epsilon <\frac{1}{A}$, 所以$0 < Ay_n < 1$, 即$y_n$单调递减, 又显然$y_n > 0$, 所以$y_n$收敛
+
+设$\Limit y_n = k$, 可得$k = Ak^2$, 显然$k < \frac{1}{A}$, 所以$k=0$, 即$y_n$为无穷小量
+
+所以$x_n$极限存在, 且$\Limit x_n = \frac{1}{A}$
+\section*{习题17}
+$q_{n+1} > \frac{1}{4(1-q_n)}$, 所以
+\begin{align*}
+	q_{n+1}-q_n &> \frac{1}{4(1-q_n)} - q_n\\
+								&=\frac{4q_n^2-4q_n+1}{4(1-q_n)}\\
+		 &>0
+\end{align*}
+所以$\{q_n\}$单调上升，又因为$0 < q_n < 1$，所以${q_n}$收敛
+
+设$\Limit q_n = a$, 则$(1-a)a \ge \frac{1}{4}$
+
+解得$a=\frac{1}{2}$, 所以$\Limit q_n = \frac{1}{2}$
+\section*{习题18}
+\subsection*{(1)}
+令$a_1 = \sqrt{2}, a_n=\sqrt{2a_{n-1}}$, 显然$a_1 < 2$, 假设$\forall n \in \mathbb{N}, n \ge 1, a_n < 2$, 则$a_{n+1} = \sqrt{2a_n} < 2$, 归纳可得$\forall n \in \mathbb{N}, a_n < 2$
+
+所以$\frac{a_{n+1}}{a_n} = \sqrt{\frac{2}{a_n}} > 1$
+
+即$\{a_n\}$单调递增有上界, 所以$\{a_n\}$收敛, 设$\Limit a_n = k, k \ge \sqrt{2}$, 可得$k = \sqrt{2k}$, 解得$k = 2$, $\Limit a_n = 2$
+\subsection*{(2)}
+令$a_1 = \sqrt{2}, a_n=\sqrt{a_{n-1}+2}$, 显然$a_1 < 2$, 假设$\forall n \in \mathbb{N}, n \ge 1, a_n < 2$. 则$a_{n+1} = \sqrt{a_n + 2} < 2$, 归纳可得$\forall n \in \mathbb{N}, a_n < 2$
+
+所以$\frac{a_{n+1}}{a_n} = \frac{\sqrt{a_n+2}}{a_n} > 1$
+
+即$\{a_n\}$单调递增有上界, 所以$\{a_n\}$收敛, 设$\Limit a_n = k, k \ge \sqrt{2}$, 可得$k = \sqrt{2k}$, 解得$k = 2$, $\Limit a_n = 2$
+\end{document}

@@ -1,0 +1,5 @@
+我爬取了Matrix67的blog（www.matrix67.com/blog），共276篇博文。
+原分类为Brain Storm，Design of Design，Internet Vision，Movie Time，Program Impossible，This is My Life，Tough Computer，而我的结果绝大部分文章都为Brain Storm，不过错误率还是处于可以接受的范围内。
+我觉得原因有两条：
+1、他blog分类的比例不科学，比如Brain Storm分类下共有532篇博文，而Tough Computer下只有28篇，所以理所当然比例分布不均匀
+2、一些分类里缺乏有效的可以识别的关键字。比如Brain Storm分类和Design of Design分类下大多数都是数学证明，所以与数学有关的关键字非常多，这样这两类在k-means聚类中就不易分离开来

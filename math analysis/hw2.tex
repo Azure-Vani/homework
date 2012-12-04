@@ -1,0 +1,105 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+\newcommand{\hei}{\CJKfamily{hei}}
+
+\title{第二次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{习题15}
+由$\inf f(x) \inf g(x) \le f(x)g(x)$, 可得$\inf f(x) \inf g(x) \le \inf [f(x)g(x)]$
+
+因为$\forall x_0 \in D, f(x_0)g(x_0) \le \sup f(x) g(x_0)$
+
+所以$\sup f(x) \inf g(x) \ge \inf[f(x)g(x)]$
+
+即$\inf f(x) \inf g(x) \le \inf[f(x)g(x)] \le \sup f(x) \inf g(x)$
+\section*{习题18}
+\subsection*{(1)}
+$f(x)=\sqrt{|x|}$
+\subsection*{(2)}
+$f(x)=
+\begin{cases}
+	\sqrt{x},&x \ge 0\\
+	\sqrt{-x},&x < 0
+\end{cases}$
+\subsection*{(3)}
+$f(x)=\sqrt{x - [x]}$
+\section*{习题25}
+假如$\sin (x^2+x)$为周期函数，且最小正周期为$t$
+
+可得 $$\sin(x^2+x) = \sin((x+t)^2+x+t)$$
+
+分别取$x=-1$和$x=0$代入, 即可得$\sin (t^2-t)=0$, 和$\sin (t^2+t)=0$
+
+所以
+\begin{equation}
+t^2+t=p\pi
+\end{equation}
+\begin{equation}
+t^2-t=q\pi, p, q\in\mathbb{Z}
+\end{equation}
+
+联立(1)(2)可解得$\pi=\frac{2(p+q)}{(p-q)^2}$, 与$\pi$是无理数矛盾
+
+故假设不成立, 即$\sin (x^2+x)$为非周期函数
+\section*{习题26}
+\subsection*{(1)}
+不失一般性, 不妨设$x_2 \ge x_1$, 令$g(x)=\frac{f(x)}{x}$, 显然$g(x)$为单调递减函数
+
+则
+
+$$f(x_1+x_2) \le f(x_1)+f(x_2)$$
+$$\Leftrightarrow (x_1+x_2)g(x_1+x_2) \le x_1g(x_1)+x_2g(x_2)$$
+\begin{equation}
+\Leftrightarrow x_1g(x_1+x_2)+x_2g(x_1+x_2) \le x_1g(x_1)+x_2g(x_2)
+\end{equation}
+
+因为$x_1, x_2 > 0$, 所以$g(x_1+x_2) \le g(x_1), g(x_1+x_2) \le g(x_2)$
+
+所以不等式$(1)$成立, 原不等式得证
+\subsection*{(2)}
+不失一般性, 不妨设$x_2 \ge x_1$, 令$g(x)=\frac{f(x)}{x}$, 显然$g(x)$为单调递增函数
+
+则
+
+$$f(x_1+x_2) \ge f(x_1)+f(x_2)$$
+$$\Leftrightarrow (x_1+x_2)g(x_1+x_2) \ge x_1g(x_1)+x_2g(x_2)$$
+\begin{equation}
+\Leftrightarrow x_1g(x_1+x_2)+x_2g(x_1+x_2) \ge x_1g(x_1)+x_2g(x_2)
+\end{equation}
+
+因为$x_1, x_2 > 0$, 所以$g(x_1+x_2) \ge g(x_1), g(x_1+x_2) \ge g(x_2)$
+
+所以不等式$(1)$成立, 原不等式得证
+\section*{习题29}
+当$x=0$, $\frac{x}{1+x^2}=0$
+
+当$x>0$, $\frac{x}{1+x^2}=\frac{1}{x+\frac{1}{x}} > 0$
+
+令$g(x)=x+\frac{1}{x}$, 由$2\sqrt{ab} \le a+b$可得$\forall x \in (0, \infty), g(x)$最小值为 2, 即$f(x), \forall x \in (0, \infty)$最大值为$\frac12$
+
+当$x<0$, 同理可得$f(x), \forall x \in (-\infty, 0)$最小值为$-\frac12$
+
+综上, $f(x), \forall x \in (-\infty, \infty)$最大值为$\frac12$, 最小值为$-\frac12$
+
+故$f(x)$在$(-\infty, \infty)$上有界
+\end{document}

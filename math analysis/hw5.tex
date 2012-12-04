@@ -1,0 +1,97 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+
+\newcommand{\Limit}{\displaystyle \lim_{n \rightarrow \infty}} 
+\newcommand{\hei}{\CJKfamily{hei}}
+
+\title{第五次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{习题24}
+假设任意非空集合$P = \{x_n\}$有上界$A$, 那么取区间$[a_1, b_1]$其中$a_1 = x_1, b_1 = A$, 对于每个区间$[a_n, b_n]$, 我们取$mid = \frac{a_n + b_n}{2}$, 并得到两个区间$[a, mid]$和$[mid, b]$
+
+考察区间$[mid, b]$, 若$\exists n \in \mathbb{N}$使得$x_n \in [mid, b]$, 则令$a_{n+1} = mid, b_{n+1} = b_n$, 否则令$a_{n+1} = a_n, b_{n+1} = mid$
+
+于是可得到一个区间序列$[a_n, b_n]$, 其中$[a_n, b_n] \supseteq [a_{n+1}, b_{n+1}]$, 而且$\Limit (b_n - a_n) = 0$, $\forall n \in \mathbb{N}, \forall m \in \mathbb{N}$都有$x_n \le b_m$, $\forall n \in \mathbb{N}$都$\exists m \in \mathbb{N}$使得$x_m \ge a_n$
+
+由区间套定理可知存在唯一$c$, 使得$\displaystyle \{c\} = \bigcap_{n=1}^{\infty} [a_n, b_n]$, 而且$\Limit a_n = c = \Limit b_n$
+
+$\exists n \in \mathbb{N}$使得$x_n > c$, 取$\epsilon = x_n - c$, 由$\Limit b_n = c$可得$\exists m \in \mathbb{N}$使得$b_m - c < \epsilon$, 即$b_m < x_n$, 与$\forall n \in \mathbb{N}, \forall m \in \mathbb{N}$都有$x_n \le b_m$矛盾
+
+故$c$为$\{x_n\}$的一个上界
+
+$\forall \epsilon > 0, \exists n \in \mathbb{N}$使得$a_n > c - \epsilon$, 故$\exists n \in \mathbb{N}$使得$x_n > c - \epsilon$。综上$c$是$P$的唯一上确界, 即对于任意非空有上界集合必有唯一上确界。
+\section*{习题25}
+令$P(i) = \{x: x \le i, x \in E\}$, 构造集合$S = \{x: P(x)$为有限集$\}$。
+
+如果$S$为空集, 取$t = \inf E$，若$\exists \delta > 0$ s.t. $U(t, \delta)\bigcap E$只有有限个点，取$u$为$U(t, \delta)\bigcap E$最小值，显然$P(u)=\{u\}$，与$S$为空集矛盾。所以$\forall \delta > 0$都有$U(t, \delta)\bigcap E$有无限个点，即$t$是$E$的聚点。
+
+如果$S$不为空集，由确界存在原理可知$S$必有上确界。取$t = \sup E$，下面证明$t$为$E$的聚点:
+
+若 $\exists \delta > 0$ s.t. $(t, t + \delta)\bigcap E$ 只有有限个点, 我们取这些点的最小值$u$, 则$P(u)$为有限集, 即$u \in S$, 与$t$为$S$的上确界矛盾, 故$\forall \delta > 0, (t, t + \delta)\bigcap E$都有无穷多个点, 即$t$为$E$的聚点。
+
+\section*{习题26}
+$\forall \epsilon > 0$, $\exists N \in \mathbb{N}$ s.t. $\forall n > N$有$|x_n-x_N| < \frac{\epsilon}{2}$, 所以$\forall n > N, m > N$, 有
+
+\begin{equation}
+	|x_n - x_N| < \frac{\epsilon}{2}
+\end{equation}
+\begin{equation}
+	|x_N - x_m| < \frac{\epsilon}{2}
+\end{equation}
+$(1)+(2)$可得$|x_n - x_N| + |x_N - x_m| < \epsilon$, 由绝对值不等式可得$|x_n - x_m| < \epsilon$, 所以$\{x_n\}$是柯西数列
+\section*{习题27}
+\subsection*{(1)}
+当$n=2k$时 $$x_n - x_{n-2} = \frac{1}{n-1} - \frac{1}{n} = \frac{1}{n(n-1)} > 0$$ 所以$\{x_{2k}\}$单调递增。
+
+当$n=2k+1$时 $$x_n - x_{n-2} = \frac{1}{n} - \frac{1}{n-1} = -\frac{1}{n(n-1)} < 0$$ 所以$\{x_{2k+1}\}$单调递减。
+
+又因为$\forall k \in \mathbb{N}, x_{2k + 1} - x_{2k} = \frac{1}{2k+1} > 0$, 且$\displaystyle \lim_{k\rightarrow \infty}\frac{1}{2k+1} = 0$，所以$\{x_{2k}\}$和$\{x_{2k+1}\}$收敛于同一极限，即$\{x_n\}$收敛。
+\subsection*{(2)}
+对于任意$n, m \in \mathbb{N}$, 不妨设$m \le n$。令$r$为$\{a_i\}$任意上界，可得
+\begin{align*}
+	|x_n - x_m| &\le |a_{m+1}q^{m+1}| + |a_{m+2}q^{m+2}| + \cdots +  |a_{n}q^{n}| \\
+			&\le \frac{r|q|^m(1-|q|^{n-m+1})}{1-|q|} \\
+			&= \frac{r(|q|^m-|q|^{n+1})}{1-|q|} < \frac{r|q|^m}{1-|q|}
+\end{align*}
+
+因此$\forall \epsilon > 0$，取$N = [\log_|q|^{\frac{\epsilon(1-|q|)}{r}}] + 1$，则当$n, m > N$时都有$|x_n - x_m| < \epsilon$，即$\{x_n\}$是柯西序列，所以它是收敛的。
+\subsection*{(3)}
+对于任意$n, m \in \mathbb{N}$, 不妨设$m \le n$。则可得
+\begin{align*}
+	|x_n-x_m| &= |\frac{\sin mx}{m^2} + \frac{\sin (m+1)x}{(m+1)^2} + \cdots + \frac{\sin nx}{n^2}|\\
+					 &\le \frac{1}{m^2} + \frac{1}{(m+1)^2} + \cdots + \frac{1}{n^2}\\
+				  	&\le \frac{1}{m - 1} - \frac{1}{m} + \frac{1}{m} - \frac{1}{m+1} + \cdots + \frac{1}{n-1} - \frac{1}{n}\\
+				     &= \frac{1}{m-1} - \frac{1}{n}\\
+				     &< \frac{1}{m-1}
+\end{align*}
+因此 $\forall \epsilon > 0$, 取 $N = [\frac{1}{\epsilon}] + 2$，则当 $n, m > N$ 时都有 $|x_n - x_m| < \epsilon$, 即 $\{x_n\}$ 是柯西序列，所以原数列收敛。
+\subsection*{(4)}
+对于任意 $n, m \in \mathbb{N}$, 不妨设 $m \le n $。 则可得
+\begin{align*}
+	|x_n - x_m| &= |\frac{\sin 2x_{m+1}}{2(2+\sin 2x_{m+1})} + \frac{\sin 3x_{m+2}}{3(3+\sin 3x_{m+2})} + \cdots + \frac{\sin nx_n}{n(n+\sin nx_n)}|\\
+								&= |\frac{1}{2} - \frac{1}{2 + \sin 2x_{m+1}} + \frac{1}{3} - \frac{1}{3 + \sin 3x_{m+2}} + \cdots + \frac{1}{n} - \frac{1}{n + \sin nx_n}|\\
+						     &< \frac{1}{2} - \frac{1}{3} + \frac{1}{3} - \frac{1}{4} + \cdots + \frac{1}{n} - \frac{1}{n + 1}\\
+						     &= \frac{1}{2} - \frac{1}{n+1}
+\end{align*}
+因此 $\forall \epsilon > 0$, 取 $N = [\frac{2}{1-2\epsilon}] + 3$, 则当 $n, m > N$ 时都有 $|x_n - x_m| < \epsilon$, 即 $\{x_n\}$ 是柯西数列，所以原数列收敛。
+\end{document}

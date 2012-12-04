@@ -1,0 +1,140 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+\newcommand{\hei}{\CJKfamily{hei}}
+
+\title{第一次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{习题5}
+
+\subsection*{(1)}
+
+$\forall M \in \mathbb{R},\exists x \in X, $使得$x>M$
+\subsection*{(2)} 
+
+假设 $\exists M \in \mathbb{R}$, 使得 $n\sin \frac{n \pi}{2}\le M$, $\forall n \in \mathbb{Z}$ 成立
+
+取$p=M\bmod 4$, $n=M-p+5$, 所以$\sin \frac{n\pi}{2}=1$
+
+又因为$0\le p<4$, 所以$n>M$
+
+即$n\sin \frac{n\pi}{2}>M$, 与假设矛盾
+
+故$A$不存在一个上界, 即$A$为无界集
+\section{习题6}
+\subsection*{(1)}
+$E$的上确界为$3$,下确界为$0$,证明如下:
+
+当$n$为奇数时，$[1+(-1)^n]\frac{n+1}{n} \equiv 0$
+
+当$n$为偶数时
+\begin{align*}
+	[1+(-1)^n] \frac{n+1}{n} &= 2\frac{n+1}{n}\\
+				 &= 2+\frac{2}{n}
+\end{align*}
+
+显然$2+\frac{2}{n} \le 3$, 即$3$为$E$的一个上界, $0$为$E$的一个下界
+
+假如$\exists \epsilon > 0$, 使得$2+\frac{2}{n} \le 3 - \epsilon$
+
+取$n=2$, 则原式等于$3$, 故这样的$\epsilon$不存在, 即$\sup E=3$
+
+若$\exists \epsilon > 0$, 使得$[1+(-1)^n] \frac{n+1}{n} > \epsilon$
+
+取$n=1$, 则原式等于$0$, 故这样的$\epsilon$不存在, 即$\inf E=0$
+\subsection*{(2)}
+因为$0<m<n$, 所以$\frac{m}{n} \not = 0$
+
+故$0$为$E$中最小值, 所以$\inf E = 0$
+
+引为$m<n$, 所以$\frac{m}{n} \not = 1$
+
+故$1$为$E$中最大值, 所以$\sup E = 1$
+\subsection*{(3)}
+$E$的上确界为$\sqrt 5$, 证明如下:
+
+当$n$为奇数时, $\sqrt[n]{1+2^{n(-1)^n}} = \sqrt[n]{1+\frac{1}{2^n}}$
+
+由于$f(x)=\sqrt[x]{a}$单调递减, 而且$1+\frac{1}{2^n}$单调递减, 所以当$n=1$时$\sqrt[n]{1+\frac{1}{2^n}}$取得最大值$\frac{2}{3} < \sqrt{5}$
+
+当$n$为偶数时, $\sqrt[n]{1+2^{n(-1)^n}} = \sqrt[n]{1+2^n}$
+
+当$n=2$时, $\sqrt[n]{1+2^n} \le \sqrt{5}$显然成立
+
+若$n=k$时, $\sqrt[k]{1+2^k} \le \sqrt{5}$成立, 当$n=k+2$时
+\begin{align*}
+	&\sqrt[k+2]{1+2^{k+2}} \le \sqrt{5}\\
+	\Leftrightarrow&1+2^{k+2} \le (\sqrt{5})^k\cdot 5\\
+	\Leftrightarrow&4(1+2^k) \le 4(\sqrt{5})^k + (\sqrt{5})^k + 3
+\end{align*}
+
+由于归纳假设, $1+2^k\le(\sqrt{5})^k$, 上式显然成立
+
+故$\sqrt{5}$为$E$的一个上界
+
+当$n=2$时, $\sqrt[n]{1+2^{n(-1)^n}} = \sqrt{5}$, 所以$\sup E=\sqrt{5}$
+
+$E$的下确界为$1$, 证明如下:
+
+因为$2^{n(-1)^n}>0, \forall n \in \mathbb{N}$, 显然$\sqrt[n]{1+2^{n(-1)^n}} \ge 1, \forall n \in \mathbb{N}$
+
+所以$1$为$E$的一个下界
+
+若$\exists \epsilon > 0$, 使得$\sqrt[n]{1+2^{n(-1)^n}} \ge 1 + \epsilon$
+
+令$n = 2\lceil \log_2{\frac{1}{\min\{\epsilon,1\}}}/2 \rceil + 1$, 则 $n$ 是奇数, 并可得$1 + \frac{1}{2^n}<1 + \epsilon$
+
+故$\sqrt[n]{1+2^{n(-1)^n}} \le 1 + \frac{1}{2^n} < 1 + \epsilon$
+
+所以不存在这样的$\epsilon$
+
+即$\inf E = 1$
+\subsection*{(4)}
+当$x \in \mathbb{Z}$, $x-[x]=0$
+
+当$x \in \mathbb{R} \setminus \mathbb{Z}$, $x-[x]>0$
+
+所以$\inf E=0$
+
+$\sup E=1$, 证明如下:
+
+显然$x-[x] \in \lbrack0,1)$, 所以$1$为$E$的上界
+
+假如$\exists \epsilon > 0$, 使得$x-[x] \le 1 - \epsilon$
+
+取$x = 1 - \frac{\min\{\epsilon,1\}}{2} \ge \frac{1}{2}$, 则$x-[x]=x > 1 - \epsilon$, 与假设矛盾
+
+所以不存在这样的$\epsilon$, 即$\sup E=1$
+\section{习题7}
+令$N = \sup A + \sup B$
+
+因为$x<\sup A, y<\sup B, \forall x\in A, \forall y\in B$, 所以$z < N, \forall z \in C$
+
+即$N$为$C$的一个上界
+
+假如$\exists \epsilon > 0$, 使得$\forall z \in C, z > N - \epsilon$
+
+则可取$x > \sup A - \frac{\epsilon}{2}, y > \sup B - \frac{\epsilon}{2}$, 其中 $x\in A, y\in B$, 使得$z = x + y > N - \epsilon$
+
+故这样的$\epsilon$不存在, 即$\sup C = \sup A + \sup B$
+\end{document}
+

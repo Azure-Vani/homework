@@ -1,0 +1,73 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\setCJKmainfont{Adobe Song Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setmainfont{Times New Roman}
+
+\newcommand{\Limit}{\displaystyle \lim_{n \rightarrow \infty}} 
+\newcommand{\uLimit}{\displaystyle \varlimsup_{x\rightarrow\infty}} 
+\newcommand{\dLimit}{\displaystyle \varliminf_{x\rightarrow\infty}} 
+\newcommand{\hei}{\CJKfamily{hei}}
+
+\title{第六次数分作业}
+\author{罗翔宇}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{习题29}
+因为 $\{a_n\}$ 必存在一个子序列收敛于 $\dLimit x_n$, 必存在一个子序列收敛于 $\uLimit x_n$. 因为 $\{a_n\}$ 发散，所以 $\dLimit x_n \not = \uLimit x_n$, 即 $\{a_n\}$ 一定存在两个子序列收敛于不同的数.
+\section*{习题31}
+\subsection*{(2)}
+构造序列 $\{x_{8n}, \forall n \in \mathbb{N}\}$, 则 $x_{8n} - x_{8n-8} = 16n > 0$, 所以 $\{x_{8n}\}$ 无上界，即 $\uLimit x_n = \infty$
+
+因为 $\{x_n\}$ 的周期为$8$，而且 $\min\{x_n\} = -\frac{\sqrt{2}}{2}$ ，所以 $\dLimit x_n = -\frac{\sqrt{2}}{2}$.
+\section*{习题31}
+\subsection*{(2)}
+可将 $\{x_n\}$ 分解为两个子序列 $\{x_m, x = 2k\}$ 和 $\{x_l, l = 2k+1\}$ , 显然 $\{x_m\}$ 无上界，所以 $\uLimit x_n = +\infty$
+
+又因为 $\Limit x_l = 0$ ，所以 $\dLimit = 0$
+\section*{习题32}
+\subsection*{(1)}
+构造 $\{y_n\}$ 子序列 $\{y_{n_k}\}$ 使得 $\Limit y_{n_k} = \uLimit y_n$. 取对应的 $\{x_n\}$ 的子序列 $\{x_{n_k}\}$, 因为 $\Limit x_{n_k} = \Limit x_n$ 所以$\Limit x_n + \uLimit y_n = \Limit x_{n_k} + \Limit y_{n_k} = \Limit (x_{n_k} + y_{n_k})$
+
+又因为对于任意子序列 $\{y_{m_k}\}$，有 $\Limit y_{m_k} \le \uLimit y_n = \Limit y_{n_k}$，所以 $\Limit (x_{n_k} + y_{n_k}) \ge \Limit x_{m_k} + \uLimit y_{m_k}$
+
+所以 $\Limit (x_n + y_n) = \Limit x_n + \uLimit y_n$
+\subsection*{(2)}
+构造 $\{y_n\}$ 子序列 $\{y_{n_k}\}$ 使得 $\Limit y_{n_k} = \uLimit y_n$. 取对应的 $\{x_n\}$ 的子序列 $\{x_{n_k}\}$, 因为 $\Limit x_{n_k} = \Limit x_n$ 所以$\Limit x_n\uLimit y_n = \Limit x_{n_k}\Limit y_{n_k} = \Limit (x_{n_k} y_{n_k})$
+
+又因为对于任意子序列 $\{y_{m_k}\}$，有 $\Limit y_{m_k} \le \uLimit y_n = \Limit y_{n_k}$，所以 $\Limit (x_{n_k} y_{n_k}) \ge \Limit x_{m_k} \uLimit y_{m_k}$
+
+所以 $\Limit (x_n y_n) = \Limit x_n \uLimit y_n$
+\section*{习题33}
+\subsection*{(1)}
+构造 $\{x_n\}$ 的子序列 $\{x_{n_k}\}$ 使得 $\Limit x_{n_k} = \dLimit x_n$ , 再令$$y_n=
+\begin{cases}
+	x_n  & \textrm{if } n \in \{n_k\}\\
+	-x_n  & \textrm{otherwise}
+\end{cases}$$所以 $\uLimit (x_n + y_n) = \dLimit(2x_n) = 2\dLimit x_n$. 又因为 $\uLimit y_n = \dLimit x_n$, 所以 $\uLimit x_n = \dLimit x_n$, 即 $\{x_n\}$ 收敛. 
+\subsection*{(2)}
+构造 $\{x_n\}$ 的子序列 $\{x_{n_k}\}$ 使得 $\Limit x_{n_k} = \dLimit x_n$ , 再令$$y_n=
+\begin{cases}
+	x_n  & \textrm{if } n \in \{n_k\}\\
+	\frac{1}{x_n}  & \textrm{otherwise}
+\end{cases}$$所以 $\uLimit (x_n y_n) = \dLimit(x_n^2) = (\dLimit x_n)^2$. 又因为 $\uLimit y_n = \dLimit x_n$, 所以 $\uLimit x_n = \dLimit x_n$, 即 $\{x_n\}$ 收敛. 
+\section*{习题35}
+$\forall k \in [l, R]$, $\forall \epsilon > 0$, $\exists N \in \mathbb{N}$ 使得 $\forall n > N$ 都有 $|x_n - x_{n-1}| < \epsilon$ . 
+
+又因为 $\exists N_1 > N$ 使得 $x_{N_1} < k - \epsilon$, $\exists N_2 > N$ 使得 $x_{N_2} > k + \epsilon$, 不妨设 $N_1 < N_2$, 则在区间 $[N_1, N_2]$ 内, $x_n$ 的值从 $l$ 变化到了 $L$, 而且$\forall n \in (N_1, N_2], |x_n - x_{n-1}| < \epsilon$, 所以必存在一个 $n \in [l, L]$ 使得 $x_n$ 落在 $(k - \epsilon, k + \epsilon)$ 内. 再次找到 $N_3$ 使得 $x_{N_3} < k - \epsilon, N_3 > N_2$, 重复此过程. 则构造出一个序列 $\{x_{n_j}\}$ 使得 $\forall n > N$ 都有 $|x_{n_j} - k| < \epsilon$ , 即 $\Limit x_{n_j} = k$
+\end{document}

@@ -1,0 +1,277 @@
+Total 276 articles, maximum matched 149 articles
+Article 0001 put in category 00
+Article 0002 put in category 00
+Article 0003 put in category 00
+Article 0004 put in category 00
+Article 0005 put in category 00
+Article 0006 put in category 00
+Article 0007 put in category 00
+Article 0008 put in category 00
+Article 0009 put in category 00
+Article 0010 put in category 00
+Article 0011 put in category 00
+Article 0012 put in category 00
+Article 0013 put in category 00
+Article 0014 put in category 00
+Article 0015 put in category 00 (should be 02)
+Article 0016 put in category 00 (should be 03)
+Article 0017 put in category 00 (should be 04)
+Article 0018 put in category 00
+Article 0019 put in category 00
+Article 0020 put in category 00
+Article 0021 put in category 00
+Article 0022 put in category 00
+Article 0023 put in category 00
+Article 0024 put in category 00 (should be 03)
+Article 0025 put in category 00
+Article 0026 put in category 00
+Article 0027 put in category 00
+Article 0028 put in category 00
+Article 0029 put in category 00
+Article 0030 put in category 00 (should be 04)
+Article 0031 put in category 00
+Article 0032 put in category 00 (should be 05)
+Article 0033 put in category 00 (should be 02)
+Article 0034 put in category 00
+Article 0035 put in category 00
+Article 0036 put in category 00
+Article 0037 put in category 00
+Article 0038 put in category 00
+Article 0039 put in category 00
+Article 0040 put in category 00
+Article 0041 put in category 00 (should be 03)
+Article 0042 put in category 00
+Article 0043 put in category 00
+Article 0044 put in category 00 (should be 05)
+Article 0045 put in category 00 (should be 04)
+Article 0046 put in category 00 (should be 04)
+Article 0047 put in category 00
+Article 0048 put in category 00
+Article 0049 put in category 00
+Article 0050 put in category 00
+Article 0051 put in category 00
+Article 0052 put in category 00 (should be 02)
+Article 0053 put in category 00
+Article 0054 put in category 00
+Article 0055 put in category 00 (should be 02)
+Article 0056 put in category 00
+Article 0057 put in category 00 (should be 01)
+Article 0058 put in category 00
+Article 0059 put in category 00 (should be 04)
+Article 0060 put in category 00 (should be 03)
+Article 0061 put in category 00
+Article 0062 put in category 00
+Article 0063 put in category 00
+Article 0064 put in category 00
+Article 0065 put in category 00
+Article 0066 put in category 00
+Article 0067 put in category 00
+Article 0068 put in category 00 (should be 04)
+Article 0069 put in category 00
+Article 0070 put in category 00 (should be 02)
+Article 0071 put in category 00 (should be 02)
+Article 0072 put in category 00 (should be 05)
+Article 0073 put in category 00
+Article 0074 put in category 00
+Article 0075 put in category 00 (should be 04)
+Article 0076 put in category 00
+Article 0077 put in category 00
+Article 0078 put in category 00
+Article 0079 put in category 00
+Article 0080 put in category 00
+Article 0081 put in category 03 (should be 00)
+Article 0082 put in category 00
+Article 0083 put in category 00
+Article 0084 put in category 00 (should be 02)
+Article 0085 put in category 00
+Article 0086 put in category 00 (should be 04)
+Article 0087 put in category 00 (should be 03)
+Article 0088 put in category 00 (should be 01)
+Article 0089 put in category 00 (should be 05)
+Article 0090 put in category 00 (should be 05)
+Article 0091 put in category 00
+Article 0092 put in category 00
+Article 0093 put in category 00
+Article 0094 put in category 00
+Article 0095 put in category 00
+Article 0096 put in category 00
+Article 0097 put in category 00
+Article 0098 put in category 00 (should be 02)
+Article 0099 put in category 00 (should be 03)
+Article 0100 put in category 00 (should be 06)
+Article 0101 put in category 00
+Article 0102 put in category 00 (should be 01)
+Article 0103 put in category 00 (should be 04)
+Article 0104 put in category 00 (should be 06)
+Article 0105 put in category 00
+Article 0106 put in category 00
+Article 0107 put in category 00
+Article 0108 put in category 00 (should be 02)
+Article 0109 put in category 00
+Article 0110 put in category 00
+Article 0111 put in category 00 (should be 05)
+Article 0112 put in category 00 (should be 04)
+Article 0113 put in category 00 (should be 04)
+Article 0114 put in category 00
+Article 0115 put in category 00
+Article 0116 put in category 00
+Article 0117 put in category 00
+Article 0118 put in category 00
+Article 0119 put in category 00
+Article 0120 put in category 00
+Article 0121 put in category 00
+Article 0122 put in category 00
+Article 0123 put in category 00 (should be 02)
+Article 0124 put in category 00
+Article 0125 put in category 00
+Article 0126 put in category 00
+Article 0127 put in category 00 (should be 04)
+Article 0128 put in category 00 (should be 02)
+Article 0129 put in category 00 (should be 06)
+Article 0130 put in category 00 (should be 01)
+Article 0131 put in category 00
+Article 0132 put in category 00 (should be 02)
+Article 0133 put in category 00 (should be 05)
+Article 0134 put in category 00
+Article 0135 put in category 00 (should be 02)
+Article 0136 put in category 00
+Article 0137 put in category 00
+Article 0138 put in category 00
+Article 0139 put in category 00
+Article 0140 put in category 00
+Article 0141 put in category 00
+Article 0142 put in category 00
+Article 0143 put in category 00
+Article 0144 put in category 00
+Article 0145 put in category 00
+Article 0146 put in category 00
+Article 0147 put in category 00
+Article 0148 put in category 00
+Article 0149 put in category 00
+Article 0150 put in category 00
+Article 0151 put in category 00 (should be 04)
+Article 0152 put in category 00 (should be 03)
+Article 0153 put in category 00 (should be 01)
+Article 0154 put in category 00 (should be 06)
+Article 0155 put in category 00 (should be 01)
+Article 0156 put in category 00
+Article 0157 put in category 00
+Article 0158 put in category 00
+Article 0159 put in category 00 (should be 05)
+Article 0160 put in category 00
+Article 0161 put in category 00
+Article 0162 put in category 01 (should be 00)
+Article 0163 put in category 00
+Article 0164 put in category 00
+Article 0165 put in category 00
+Article 0166 put in category 00
+Article 0167 put in category 00
+Article 0168 put in category 00
+Article 0169 put in category 00
+Article 0170 put in category 00
+Article 0171 put in category 00
+Article 0172 put in category 00
+Article 0173 put in category 05 (should be 00)
+Article 0174 put in category 00 (should be 05)
+Article 0175 put in category 00 (should be 03)
+Article 0176 put in category 00
+Article 0177 put in category 00
+Article 0178 put in category 00
+Article 0179 put in category 00
+Article 0180 put in category 00 (should be 04)
+Article 0181 put in category 00
+Article 0182 put in category 00
+Article 0183 put in category 00 (should be 04)
+Article 0184 put in category 00
+Article 0185 put in category 00 (should be 02)
+Article 0186 put in category 00
+Article 0187 put in category 06 (should be 00)
+Article 0188 put in category 00
+Article 0189 put in category 00 (should be 02)
+Article 0190 put in category 00 (should be 02)
+Article 0191 put in category 00
+Article 0192 put in category 00
+Article 0193 put in category 00 (should be 04)
+Article 0194 put in category 00 (should be 06)
+Article 0195 put in category 00 (should be 02)
+Article 0196 put in category 00
+Article 0197 put in category 00 (should be 04)
+Article 0198 put in category 00 (should be 04)
+Article 0199 put in category 00
+Article 0200 put in category 00 (should be 04)
+Article 0201 put in category 00 (should be 04)
+Article 0202 put in category 00
+Article 0203 put in category 00 (should be 04)
+Article 0204 put in category 00 (should be 04)
+Article 0205 put in category 00 (should be 05)
+Article 0206 put in category 00
+Article 0207 put in category 00 (should be 01)
+Article 0208 put in category 00 (should be 05)
+Article 0209 put in category 00
+Article 0210 put in category 00 (should be 01)
+Article 0211 put in category 00 (should be 04)
+Article 0212 put in category 00 (should be 02)
+Article 0213 put in category 00
+Article 0214 put in category 00 (should be 02)
+Article 0215 put in category 00 (should be 01)
+Article 0216 put in category 04 (should be 02)
+Article 0217 put in category 00
+Article 0218 put in category 00
+Article 0219 put in category 00
+Article 0220 put in category 00
+Article 0221 put in category 00 (should be 05)
+Article 0222 put in category 00 (should be 06)
+Article 0223 put in category 00 (should be 02)
+Article 0224 put in category 00
+Article 0225 put in category 00
+Article 0226 put in category 00 (should be 02)
+Article 0227 put in category 00
+Article 0228 put in category 00 (should be 02)
+Article 0229 put in category 00
+Article 0230 put in category 00
+Article 0231 put in category 02
+Article 0232 put in category 00
+Article 0233 put in category 00 (should be 04)
+Article 0234 put in category 00 (should be 04)
+Article 0235 put in category 00 (should be 04)
+Article 0236 put in category 00 (should be 03)
+Article 0237 put in category 00 (should be 02)
+Article 0238 put in category 00 (should be 01)
+Article 0239 put in category 00 (should be 01)
+Article 0240 put in category 00
+Article 0241 put in category 00 (should be 01)
+Article 0242 put in category 00
+Article 0243 put in category 00 (should be 01)
+Article 0244 put in category 00 (should be 01)
+Article 0245 put in category 00 (should be 01)
+Article 0246 put in category 00 (should be 03)
+Article 0247 put in category 00 (should be 03)
+Article 0248 put in category 00 (should be 03)
+Article 0249 put in category 00 (should be 03)
+Article 0250 put in category 00 (should be 03)
+Article 0251 put in category 00 (should be 03)
+Article 0252 put in category 00 (should be 03)
+Article 0253 put in category 00 (should be 03)
+Article 0254 put in category 00 (should be 03)
+Article 0255 put in category 00 (should be 04)
+Article 0256 put in category 00 (should be 04)
+Article 0257 put in category 00 (should be 04)
+Article 0258 put in category 00 (should be 04)
+Article 0259 put in category 00 (should be 04)
+Article 0260 put in category 00 (should be 04)
+Article 0261 put in category 00 (should be 04)
+Article 0262 put in category 00 (should be 05)
+Article 0263 put in category 00 (should be 05)
+Article 0264 put in category 00 (should be 05)
+Article 0265 put in category 00 (should be 05)
+Article 0266 put in category 00 (should be 05)
+Article 0267 put in category 00 (should be 05)
+Article 0268 put in category 00 (should be 05)
+Article 0269 put in category 00 (should be 04)
+Article 0270 put in category 00 (should be 06)
+Article 0271 put in category 00 (should be 06)
+Article 0272 put in category 00 (should be 06)
+Article 0273 put in category 00 (should be 06)
+Article 0274 put in category 00 (should be 06)
+Article 0275 put in category 00 (should be 06)
+Article 0276 put in category 00 (should be 06)

@@ -1,0 +1,822 @@
+\documentclass[xcolor=dvipsnames, 9pt]{beamer}
+
+\usepackage{xeCJK}
+\usepackage{listings} 
+
+
+%Set fonts
+\setCJKmainfont{WenQuanYi Micro Hei Mono}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKmonofont{DejaVu Sans Mono}
+\setmainfont{Times New Roman}
+
+\setlength{\baselineskip}{0.5em}
+\newcommand{\hei}{\CJKfamily{hei}}
+\newenvironment{code}{\begin{semiverbatim} \begin{footnotesize}}{\end{footnotesize}\end{semiverbatim}}
+
+\usetheme{Frankfurt}
+\usepackage{beamerthemesplit}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{enumerate items}[default]
+\useoutertheme{infolines}
+\setbeamertemplate{footline}[slide number]
+
+\title{Play with Python}
+\subtitle{Introduction to programming with python}
+\author{Vani}
+\institute{Peking University}
+\date{\today}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}[fragile]{quiz}
+	猜一下下面程序的作用
+	\begin{itemize}
+		\item<9-> \textbf<9>{\alert<9>{Python}}
+		\item<2->[]
+			\begin{block}{}
+				\begin{code}
+					print ''.join([['0','1'][i!=j] for i,j in zip(raw\_input(),raw\_input())])
+				\end{code}
+			\end{block}
+		\item<8-> Ruby
+		\item<3->[]
+			\begin{block}{}
+				\begin{code}
+					$><<"%0#{gets=~/$/}b"%($_.to_i(2)^gets.to_i(2))
+				\end{code}
+			\end{block}
+		\item<7-> Haskell
+		\item<4->[]
+			\begin{block}{}
+				\begin{code}
+					main=interact$(\\[x,y]->zipWith(\\a b->if a==b then '0' else '1')x y).lines
+				\end{code}
+			\end{block}
+		\item<6-> C
+		\item<5->[]
+			\begin{block}{}
+				\begin{code}
+					\fontsize{4pt}{0.7em}\selectfont{
+					#include <stdio.h>
+					#include <string.h>
+					int main(int argc, char *argv[]) \{
+					    char s1[100], s2[100];
+					    int i;
+					    scanf("\%s\\n\%s", s1, s2);
+					    for (i = 0; i < strlen(s1); i++) \{
+					        if (s1[i] == s2[i])
+						      putchar('1');
+				              else
+						      putchar('0');
+					    \}
+					\}}
+				\end{code}
+			\end{block}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Features}
+	\begin{itemize}
+		\item<1-> 优势：
+			\begin{itemize}
+				\item<2-> 解释性
+					\vspace{0.1cm}
+				\item<3-> 可移植性
+					\vspace{0.1cm}
+				\item<4-> 丰富的库
+					\vspace{0.1cm}
+				\item<5-> 甜甜的语法糖
+			\end{itemize}
+		\vspace{0.4cm}
+		\item<6-> 劣势
+			\begin{itemize}
+				\item<7-> 执行速度慢
+					\vspace{0.1cm}
+				\item<8-> 奇怪的面向对象机制
+					\vspace{0.1cm}
+				\item<9-> 命名混乱
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\section{基本语法}
+\subsection{基本数据类型}
+\begin{frame}[fragile]{数}
+	\begin{columns}
+	\column{.45\textwidth}
+	\begin{itemize}
+				\item<2-> 整数
+					\vspace{0.3cm}
+				\item<3-> 长整数
+					\vspace{0.3cm}
+				\item<5-> 浮点数
+					\vspace{0.3cm}
+				\item<6-> 复数
+	\end{itemize}
+	\column{.45\textwidth}
+	\begin{block}{Code}
+		\begin{code}
+			\uncover<4->{>>> print 2**200
+
+1606938044258990275541962092341162602
+522202993782792835301376}
+
+
+		\uncover<7->{>>> print (-3+4j)*(1-2j)
+
+		5+10j}
+		\end{code}
+	\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{字符串}
+	\uncover<2->{字符串是一种特殊的列表。字符串可以由单引号，双引号以及三引号来声明, 其中单引号和双引号是完全相同的，三引号用来声明多行字符串}
+	\vspace{0.2cm}
+	\begin{columns}
+	\column{.45\textwidth}
+	\begin{itemize}
+				\item<3-> 可以直接使用加号来连接字符串，用乘号重复字符串
+					\vspace{0.1cm}
+				\item<7-> Python支持格式化字符串，类似C里面printf()的字符串格式化
+	\end{itemize}
+	\column{.45\textwidth}
+	\begin{block}{Code}\begin{code}
+		\uncover<4->{>>> a="a+"
+		>>> b='b'}
+		\uncover<5->{>>> print a+b, b*3}
+		\uncover<6->{a+b bbb}
+
+	\uncover<8->{>>> c=74}
+	\uncover<9->{>>> print "\%d is a lucky number."\%(c)
+		74 is a lucky number.
+	}
+	\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\subsection{运算符与表达式}
+\begin{frame}[fragile]{运算符}
+	Python的大部分运算符与C的功能一样，下面简单介绍一下一些与C不同的运算符.
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> 乘方运算符 **
+				\vspace{0.1cm}
+			\item<4-> 整除运算符 //
+				\vspace{0.1cm}
+			\item<6-> 逻辑运算符 and, or, not. 短路计算在Python里也适用
+				\vspace{0.1cm}
+			\item<8-> Python没有自增自减运算符，但有复合赋值运算符
+				\vspace{0.1cm}
+			\item<10-> 利用短路计算模拟问号操作符. \uncover<11->{\alert<11->{有缺陷！}}
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code} \begin{code}
+			\uncover<3->{>>> print 2**10
+			1024}
+
+			\uncover<5->{>>> print 1.5//0.2
+			7.0}
+
+			\uncover<7->{>>> print True and not False
+			True}
+
+			\uncover<9->{>>> a=42
+				>>> a\%=10
+				>>> print a
+			2}
+
+			\uncover<11->{>>> a = -10
+				>>> print a < 0 and -a or a
+				10
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{缩进}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> Python里使用缩进来决定语句的分组, 就像C++里的大括号
+				\vspace{0.1cm}
+			\item<3-> 不要忘记语句尾有一个冒号
+				\vspace{0.1cm}
+			\item<5-> 错误的缩进会引发错误
+				\vspace{0.1cm}
+			\item<8-> \alert<7->{缩进可以使用一个制表或者四个空格，但请不要混合使用制表和空格缩进}
+		\end{itemize}
+		\column{.45\textwidth}
+	\begin{block}{Code}
+			\begin{code}
+				\uncover<4->{>>> if a < 10\alert<3>{:}
+				...    print "a<10"
+				... else\alert<3>{:}
+				...    if a >= 10 and a < 20\alert{:}
+				...        print "a >= 10 and a < 20"
+				...    else\alert{:}
+				...        print "a >= 20"
+				  }
+			\uncover<6->{\alert<5->{>>> i=5
+				>>>  print "Value is",i}
+			}
+			\uncover<7->{print 'value is'
+					^
+				 IndentationError: unexpected indent}
+			\end{code}
+		\end{block}
+	\end{columns}
+\end{frame}
+
+\subsection{控制流程}
+\begin{frame}[fragile]{判断语句}
+	\begin{columns}
+		\column{.45\textwidth}
+			\begin{itemize}
+				\item<2-> if的条件判断可以不加括号
+					\vspace{0.1cm}
+				\item<3-> if后面可以接elif
+					\vspace{0.1cm}
+				\item<5-> \alert{Python里没有switch语句，可以使用if...elif来代替}
+					\vspace{0.1cm}
+				\item<7-> if的三元表达式:$$X\ if\ C\ else\ Y$$
+			\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<4->{a=10
+			if a < 10:
+			    print "less than 10"
+			elif a == 10:
+			    print "equal to 10"
+			else:
+		    print "greater than 10"}
+
+		
+			\uncover<8->{>>> a = 10
+				>>> print "even" if a \% 2 == 0 else "odd"
+			even}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{循环语句}
+	Python里的有while循环语句和for循环语句
+
+	其中while循环和C用法基本相同，而for循环用于遍历列表或者迭代器.
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> while语句后可接else从句，else后的内容在循环结束后或者break后执行
+				\vspace{0.1cm}
+			\item<5-> for语句的格式为$$for\ [item]\ in\ [volume]:$$其中volume必须为可遍历的类型，比如列表，迭代器，而item必须与volume内元素类型相符 
+				\vspace{0.1cm}
+			\item<6-> for语句后也可接else
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{a=74
+				while a \% 42 != 0:
+				    a+=1
+				else:
+			    print "a is", a}
+
+			\uncover<4->{Output:
+			a is 84}
+
+
+			\uncover<7->{for i in range(0, 11):
+			    print i}
+
+			\uncover<8->{Output:
+				1
+				2
+				3}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\subsection{函数}
+
+\begin{frame}[fragile]{定义函数}
+	函数通过关键字def定义，后接一个函数标识符名称，然后跟一对圆括号，其中包括一写变量名
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> 函数的参数列表不用指定类型
+				\vspace{0.1cm}
+			\item<5-> 调用时必须要加双括号
+				\vspace{0.1cm}
+			\item<6-> 函数内变量均为局部变量，可使用global关键字声明全局变量
+				\vspace{0.1cm}
+			\item<7-> \alert<7->{不推荐！}
+				\vspace{0.1cm}
+			\item<8-> 当参数为一个序列时，如果在序列前加一个*，则自动将序列分割成参数表
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{>>> def Double(a):
+				...    return a * 2
+				>>> print Double(3)
+				>>> print Double("kill")
+				}\uncover<4->{6
+				killkill
+			    }
+				\uncover<9->{>>> def f(a, b, c):
+					...    return a + b + c
+					>>> print f(*[1, 2, 3])
+					6
+			    }
+			\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{lambda函数}
+	可通过lambda关键字声明匿名函数, 格式为：$$lambda\ [arg1[,\ arg2,\ ...]]:\ expression$$
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> lambda表达式的返回值即为一个函数
+				\vspace{0.1cm}
+			\item<4-> 思考：如何使用lambda函数来定义阶乘函数fac(x)
+				\vspace{0.1cm}
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{
+				print (lambda x: x + 1)(41)
+
+				Output:
+				42
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{lambda函数}
+	\begin{itemize}
+		\item<2-> 一个可行的实现:
+			\vspace{0.1cm}
+		\item<3->[]\begin{exampleblock}{Code}\begin{code}
+# Construct assitant function
+YA =lambda x: lambda y: y(lambda : x(x)(y))
+YB = YA(YA)
+
+# Factor function
+fact0 = lambda self: lambda n: (n==0) and 1 or n * self()(n-1)
+fact = YB(fact0)
+
+# >>> fact(6)
+# 720
+		\end{code}\end{exampleblock}
+		\vspace{0.1cm}
+		\item<4-> 可自行学习函数式编程相关知识(lambda演算，Y combanitor...)
+	\end{itemize}
+\end{frame}
+
+\subsection{数据结构}
+\begin{frame}[fragile]{列表}
+	\uncover<2->{列表用于储存一个序列的项目，可用一对方括号来声明, 利用下标索引来访问元素}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<3-> 列表中各个元素的类型可以不同
+				\vspace{0.1cm}
+			\item<5-> 可以创建多维列表
+				\vspace{0.1cm}
+			\item<7-> 列表生成器
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<4->{>>> print [3, "123"]
+				[3, "123"]
+			}
+
+			\uncover<6->{>>> a = [[1,2,3],[4,5,6]]
+				print a[0][1]
+				5
+			}
+
+			\uncover<8->{>>> print [i for i in range(0, 3)]
+				[0, 1, 2]
+			}
+			\uncover<10->{>>> print [i for i in range(0, 11) \\
+					...if i \% 3 == 0]
+					[0, 3, 6, 9]
+				}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{列表相关函数}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{description}
+			\item<2->[[l:r]] 用于获得一个列表的子序列
+				\vspace{0.1cm}
+			\item<5->[list.append(obj)] 用于向list添加一个对象obj
+				\vspace{0.1cm}
+			\item<7->[len(list)] 获得列表长度
+				\vspace{0.1cm}
+			\item<9->[list.sort] 列表内元素排序
+		\end{description}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{>>> a = [3,2,1,4,5,6,7]}
+			\uncover<4->{>>> print a[1:4]
+				[3,2,1]
+			}
+
+			\uncover<6->{>>> a.append(8)
+				>>> print a
+				[3,2,1,4,5,6,7,8]
+			}
+
+			\uncover<8->{>>> print len(a)
+				8
+			}
+			\uncover<10->{>>> a.sort()
+				>>> print a
+				[1,2,3,4,5,6,7,8]
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{元组}
+	\uncover<2->{元组与列表十分类似，不过元组是不可添加元素的.  元组通过圆括号中用逗号分割的项目定义}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<3-> 元组的定义中的圆括号是可以省略的
+				\vspace{0.1cm}
+			\item<4-> 于是Python中变量赋值与交换两个变量可写成如右所示:
+				\vspace{0.1cm}
+			\item<6-> zip函数接受n个等长序列作为参数，返回一个序列，其中第i项为由n个序列第i项构成的一个元组
+				\vspace{0.1cm}
+			\item<7-> 可以同时遍历若干的序列
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<5->{>>> a,b = 1,2
+				>>> print a, b
+				1 2
+				>>> a,b = b,a
+				>>> print a, b
+				2 1
+			}
+
+			\uncover<8->{>>> a, b = [0,1,2],[3,4,5]
+				>>> for i, j in zip(a, b):
+				...     print i. j
+				0 3
+				1 4
+				2 5
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{字典}
+	\uncover<2->{字典类似于C++ STL里的map，用于建立关键字到值的映射, 声明格式如下：$$d = \{key1: value1, key2: value1\}$$}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<3-> 字典的items返回一个元组的列表，其中每个元组都包含一对项目——关键字与对应的值
+				\vspace{0.1cm}
+			\item<4-> 使用items来遍历字典：
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<5->{>>> a = {"a": 1, "b": 2, "c": 3}
+				>>> for i, j in a.items():
+				...     print i, j
+				a 1
+				b 2
+				c 3
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\subsection{内置函数}
+\begin{frame}[fragile]{字符串相关函数}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{description}
+			\item<2->[s.join(list)] 用于连接字符串
+				\vspace{0.2cm}
+			\item<4->[s.split(se)] 用于分割字符串
+				\vspace{0.2cm}
+			\item<6->[s.strip()] 用于去除字符串开始和结尾的空白字符
+		\end{description}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{>>> a = ["Hello", "World", "!"]
+				>>> print "_".join(a)
+				Hello_World_!
+			}
+			
+			\uncover<5->{>>> print "Hello_World_!".split("_")
+				["Hello", "World", "!"]
+			}
+
+			\uncover<6->{>> print "  Hello ! ".strip()
+				Hello !
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{序列相关函数}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{description}
+			\item<2->[map(func, list)] 将func作用list内每个元素，返回结果组成的序列
+				\vspace{0.1cm}
+			\item<4->[filter(func, list)] 将func作用于list内每个元素，返回令func为真的元素组成的序列
+				\vspace{0.1cm}
+			\item<6->[reduce(func, list)] 通过二元函数func将list缩减为一个值
+				\vspace{0.1cm}
+			\item<8->[sum(list), max(list), min(list)] 字面意思
+		\end{description}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{>>> a = [1, 2, 3]
+				>>> print map(lambda x: x * 2, a)
+				[2, 4, 5]
+			}
+
+			\uncover<5->{>>> a = [1, 2, 3, 4]
+				>>> print filter(lambda x: x \%2 == 0, a)
+				[2, 4]
+			}
+
+			\uncover<7->{>>> a = [1, 2, 3, 4]
+				>>> print reduce(lambda x, y: x * y, a)
+				24
+			}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{输入和输出}
+	Python一般使用raw\_input和print来标准输入和输出
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<2-> raw\_input()默认读入一行字符串，需要使用int()函数来强制转化为整数
+				\vspace{0.1cm}
+			\item<4-> print默认在输出后面添加换行
+				\vspace{0.1cm}
+			\item<5-> 取消换行：
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{block}{Code}\begin{code}
+			\uncover<3->{>>> a = int(raw_input())
+				>>> b = int(raw_input())
+				>>> print a + b
+				1
+				3
+				4
+			}
+
+			\uncover<6->{>>> print 3,
+				>>> print 4
+			3 4}
+		\end{code}\end{block}
+	\end{columns}
+\end{frame}
+
+\subsection{小技巧}
+\begin{frame}[fragile]{Trick}
+	\begin{itemize}
+		\item<1-> 如何方便地读入一行内空格分割的整数
+			\vspace{0.1cm}
+		\item<2->[]\begin{exampleblock}{Code}\begin{code}
+				>>> a,b,c = map(int, raw_input().split())
+				1 2 3
+				>>> print a + b + c
+				6
+			\end{code}\end{exampleblock}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trick}
+	\begin{itemize}
+		\item<1-> 读入两行长度相同的字符串，相同位输出1，不同位输出0
+			\vspace{0.1cm}
+		\item<2->[]\begin{exampleblock}{Code}\begin{code}
+				>>> print "".join(["0","1"][i == j] for i, j in zip(raw_input(), raw_input()))
+				abacb
+				bbabb
+				01101
+			\end{code}\end{exampleblock}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Trick}
+	\begin{itemize}
+		\item<1-> 转置一个矩阵
+			\vspace{0.1cm}
+		\item<2->[]\begin{exampleblock}{Code}\begin{code}
+				>>> a = [[1,2,3],[4,5,6],[7,8,9]]
+				>>> print zip(*a)
+				[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+			\end{code}\end{exampleblock}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Trick}
+	\begin{itemize}
+		\item<1-> 快速排序
+			\vspace{0.1cm}
+		\item<2->[]\begin{exampleblock}{Code}\begin{code}
+				>>> def qsort(a):
+				...    return [] if a == [] else qsort(filter(lambda x: x <= a[0], a[1:])) + \\
+					[a[0]] + qsort(filter(lambda x: x > a[0], a[1:]))
+
+				>>> print qsort([3, 2, 4, 1, 5])
+				[1, 2, 3, 4, 5]
+			\end{code}\end{exampleblock}
+	\end{itemize}
+\end{frame}
+
+\subsection{面向切面的编程}
+\begin{frame}[fragile]{修饰器}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<1-> 先来围观一个函数：
+				\vspace{0.1cm}
+			\item<3-> 怎样得到它的运行时间
+				\vspace{0.1cm}
+			\item<5-> \alert<5>{无法扩展 :(}
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{exampleblock}{Code}\begin{code}
+			\only<2-3>{def foo():
+			    print "Hello World!"
+
+			foo()
+			}
+			
+			\only<4->{import time
+					def foo():
+					    start = time.clock()
+					    print "Hello World!"
+					    end = time.clock()
+					    print "Time used:", end - start
+
+					foo()
+			}
+		\end{code}\end{exampleblock}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{修饰器}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{itemize}
+			\item<1-> 如果可以有一个获取其他函数运行时间的函数...
+				\vspace{0.1cm}
+			\item<3-> 要修改函数调用的形式 
+				\vspace{0.1cm}
+			\item<4-> 直接获取一个新的函数！
+				\vspace{0.1cm}
+			\item<6-> Python的语法糖
+				\vspace{0.1cm}
+			\item<8-> 良好的扩展性
+		\end{itemize}
+		\column{.45\textwidth}
+		\begin{exampleblock}{Code}\begin{code}
+	\only<2-4>{import time
+					def foo():
+					    print "Hello World!"
+
+					def getTime(func):
+					    start = time.clock()
+					    func()
+					    end = time.clock()
+					    print "Time used:", end - start
+
+			\alert<3>{getTime(foo)}
+		  }\only<5-8>{import time
+					def getTime(func):
+					    def wrapper():
+					        start = time.clock()
+					        func()
+					        end = time.clock()
+					        print "Time used:", end - start
+					    return wrapper
+
+					\only<5-6>{\alert<6>{def foo():
+					    print "Hello World!"
+					foo = getTime(foo)}}\only<7->{\alert<7>{@getTime
+						def foo():
+				    print "Hello World!" }}
+
+					foo()
+					\only<8->{
+						@getTime
+						def foo2():
+						    print "Enjoy Python!"
+
+					foo2()}}
+		\only<9->{Output:
+
+				Hello World!
+				Time used: 0.0
+				Enjoy Python!
+			Time used: 0.0}
+	    \end{code}\end{exampleblock}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{带参数的修饰器}
+	\begin{columns}
+		\column{.45\textwidth}
+			\begin{itemize}
+					\item<2-> 修饰器可不可以传递参数？
+						\vspace{0.1cm}
+					\item<3-> 多了一层处理嵌套而已
+						\vspace{0.1cm}
+					\item<4-> 实质是面向切面的编程
+			\end{itemize}
+		\column{.45\textwidth}
+		\begin{exampleblock}{Code}\begin{code}
+			\only<3-4>{
+				\alert<3>{def deco(arg):}
+				    def getTime(foo):
+				        def wrapper():
+				            start = time.clock()
+				            foo()
+				            end = time.clock()
+				            print arg, "used time:", end - start
+				        return wrapper
+				    \alert<3>{return getTime}
+
+				@deco("foo1")
+				def foo1():
+				    print "Hello World!"
+
+				@deco("foo2")
+				def foo2():
+				    print "Enjoy Python!"
+
+				foo1()
+				foo2()
+			}
+			\only<5->{Output:
+
+				Hello World!
+				foo1 used time: 0.0
+				Enjoy Python!
+				foo2 used time: 0.0
+			}
+		\end{code}\end{exampleblock}
+	\end{columns}
+\end{frame}
+
+\subsection{库扩展}
+\begin{frame}{常用的库}
+	\begin{description}
+		\item<2->[numpy] 科学计算包，包括一个强大的数组对象Array和线性袋鼠，傅立叶变换等常用函数, 一般与scipy库配套使用
+			\vspace{0.1cm}
+		\item<3->[scipy] 科学计算包，包括最优化，线性代数，积分，插值，图像处理，常微分方程等常用计算的模块
+			\vspace{0.1cm}
+		\item<4->[re] 正则表达式库，内置一个正则表达式引擎，可用于做一些复杂的字符串分析
+			\vspace{0.1cm}
+		\item<5->[urllib, urllib2]: 网络编程库，可方便地抓取网页，避免烦琐的socket编程
+	\end{description}
+\end{frame}
+
+\subsection{更多}
+\begin{frame}{更高端的Python}
+	\begin{itemize}
+		\item<2-> 面向对象的编程，封装继承相关
+			\vspace{0.1cm}
+		\item<3-> 闭包
+			\vspace{0.1cm}
+		\item<4-> 魔术方法
+	\end{itemize}
+	\uncover<5->{感兴趣的同学可自行查阅相关资料}
+\end{frame}
+
+\begin{frame}{End.}
+	\huge{欢迎提问！}
+\end{frame}
+
+\end{document}
+
