@@ -32,7 +32,7 @@
 
 \begin{document}
 
-\begin{frame}[plain]
+\begin{frame}
 \titlepage
 \end{frame}
 
@@ -800,6 +800,55 @@ fact = YB(fact0)
 			\vspace{0.1cm}
 		\item<5->[urllib, urllib2]: 网络编程库，可方便地抓取网页，避免烦琐的socket编程
 	\end{description}
+\end{frame}
+
+\subsection{示例程序}
+
+\begin{frame}[fragile]{我的作业}
+	\begin{block}{Code}\begin{code}
+# \_*\_ coding: utf-8 \_*\_
+from numpy import *
+from scipy.linalg import *
+from scipy.sparse import *
+from scipy.sparse.linalg import svds
+
+word\_list, row, col, data= [], [], [], []
+
+f\_id\_word = open("id\_word.txt", "r")
+for i in f\_id\_word:
+	word\_list.append(i.split(',')[0])
+f\_id\_word.close()
+
+f\_data = open("data", "r")
+for i in f\_data:
+	poem\_id, word\_id, v = i.split()
+	row.append(int(word\_id)-1)
+	col.append(int(poem\_id)-1)
+	data.append(float(v))
+
+a = coo\_matrix((data, (row, col)))
+ret = svds(a, 100)
+	\end{code}\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{我的作业}
+	\begin{block}{Code}\begin{code}
+while (True):
+    s = raw\_input("please input the query word(\\"q\\" for quit):\\n")
+    if (s == "q"): break
+    tmp = []
+    if (s in word\_list):
+        pos = word\_list.index(s)
+        for i in range(0, len(vector)):
+            if i != pos:
+                tmp.append((get(vector[i], vector[pos]), i))
+        tmp.sort()
+        k = 5
+        for i in range(1, k+1):
+            print word\_list[tmp[len(tmp) - i][1]]
+    else:
+        print "this word doesn't exist"in{code}
+	\end{code}\end{block}
 \end{frame}
 
 \subsection{更多}

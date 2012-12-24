@@ -1,0 +1,771 @@
+\documentclass[xcolor=dvipsnames, 11pt]{beamer}
+
+\usepackage{geometry}
+\usepackage{xeCJK}
+\usepackage{listings} 
+
+
+\geometry{left=1cm}
+%Set fonts
+\setCJKmainfont{WenQuanYi Micro Hei Mono}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKmonofont{DejaVu Sans Mono}
+\setmainfont{Times New Roman}
+
+\setlength{\baselineskip}{0.5em}
+\newcommand{\hei}{\CJKfamily{hei}}
+\newenvironment{codetext}{\begin{semiverbatim}\begin{footnotesize}}{\end{footnotesize}\end{semiverbatim}}
+\newenvironment{code}{\begin{block}{Code}\begin{semiverbatim} \begin{footnotesize}}{\end{footnotesize}\end{semiverbatim}\end{block}}
+\newenvironment{iit}{\begin{itemize}\setlength{\itemsep}{0.2cm}}{\end{itemize}}
+
+\usetheme{Frankfurt}
+\usepackage{beamerthemesplit}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{enumerate items}[default]
+\useoutertheme{infolines}
+\setbeamertemplate{footline}[slide number]
+
+\title{函数式编程与Haskell}
+\subtitle{Introduction to functional programming}
+\author{Vani}
+\institute{Peking University}
+\date{\today}
+
+\begin{document}
+\section{函数式编程}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\subsection{什么是函数式编程}
+
+\begin{frame}[fragile]{什么是函数式编程？}
+	你一定知道面向对象
+	\begin{itemize}
+	\vspace{0.1cm}
+		\item<2-> 封装
+	\vspace{0.1cm}
+		\item<3-> 继承
+	\vspace{0.1cm}
+		\item<4-> 多态
+	\vspace{0.1cm}
+		\item<5-> 总之好厉害
+	\end{itemize}
+	\vspace{0.3cm}
+	\uncover<6->{函数式}
+	\vspace{0.1cm}
+	\begin{itemize}
+		\item<7-> 这是什么东西？？？
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{其实...}
+	函数式编程是一种完全不同的编程形式，与之对应的是指令式编程。
+
+	\vspace{0.1cm}
+	特点:
+	\vspace{0.1cm}
+	\begin{itemize}
+		\item<2-> 不可变量
+			\vspace{0.1cm}
+		\item<3-> 惰性求值
+			\vspace{0.1cm}
+		\item<4-> 高阶函数
+			\vspace{0.1cm}
+		\item<5-> 无副作用
+			\vspace{0.1cm}
+		\item<6-> 一切皆函数
+	\end{itemize}
+\end{frame}
+
+\subsection{lambda 演算}
+
+\begin{frame}[fragile]{从停机问题开始}
+	什么是停机问题？
+	\vspace{0.2cm}
+	\begin{itemize}
+		\item<2->[]{\color{blue}{给定任意一个程序及起输入，判断该程序是否能在有限的计算以内结束}}
+	\end{itemize}
+	\vspace{0.5cm}
+	\uncover<3->{作用？}
+	\vspace{0.2cm}
+	\begin{iit}
+	\item<4->[]轻松愉悦地证明:
+		\item<5->哥德巴赫猜想
+		\item<6->费马大定理
+		\item<7->......
+	\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{如果真有这个算法}
+	\uncover<2->{假如真的作出了这个算法，你只要给任意一个函数和这个函数的输入，它就能告诉你这个函数能不能结束}
+
+	\vspace{0.6cm}
+	\uncover<3->{我们用下面代码描述:}
+	\vspace{0.2cm}
+\begin{itemize}\item<4->[]\begin{code}
+		bool halting(func, input) \{
+		    return if_func_will_halt_on_input;
+		\}
+\end{code}\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{充分利用停机判定}
+	\uncover<2->{我们构造另一个函数：}
+	\vspace{0.2cm}
+\begin{iit} \item<3->[]\begin{code}
+void evil(func) \{
+    if (halting(func, func)) \{
+        for(;;);
+    \}
+\}
+	  \end{code}
+\end{iit}
+\vspace{0.2cm}
+\uncover<3->{接下来，调用：\color{blue}{evil(evil)}}
+\end{frame}
+
+\begin{frame}[fragile]{悖论}
+	\uncover<2->{到底停不停机？？}
+
+	\vspace{0.3cm}
+	\uncover<3->{所以停机问题不可判定}
+\end{frame}
+
+\begin{frame}[fragile]{$\lambda$ 演算法}
+基本语法：
+\vspace{0.2cm}
+\begin{iit}
+	\item<2->$<expr>\;::=\;<identifier>$
+	\item<3->$<expr>\;::=\;\lambda\ <identifier-list>.\;<expr>$
+	\item<4->$<expr>\;::=\;(<expr>\ <expr>)$
+\end{iit}
+\vspace{0.4cm}
+\uncover<5->{比如：}
+\begin{iit}
+	\item<6->[]$\lambda\ x\ y.\;x\;+\;y$
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{$\lambda$ 演算公理}
+\uncover<2->{置换公理}
+\begin{iit}
+\item<3->$\lambda\ x\ y.\ x\;+\;y\ =>\ \lambda\ a\ b.\ a\;+\;b$
+\end{iit}
+\vspace{0.5cm}
+\uncover<4->{代入公理}
+\begin{iit}
+\item<5->$(\lambda\ x\ y.\ x\;+\;y)\ a\ b\ =>\ a\;+\;b$
+\end{iit}
+\vspace{0.5cm}
+\uncover<6->{以上就是$\lambda$ 演算的全部公理系统}
+\end{frame}
+
+\begin{frame}[fragile]{函数生成器}
+\uncover<2->{我们可以使用$\lambda$ 演算法定义各种各样的语法}
+\begin{iit}
+	\item<3->[]\begin{block}{"and" operator:}\begin{semiverbatim} \begin{footnotesize}
+		\uncover<4->{let And = 
+		        \\ True False. False
+		        \\ True True. True
+		        \\ False True. False
+		        \\ False False. False}
+		\end{footnotesize}\end{semiverbatim}\end{block}
+	\item<5->[]\begin{block}{"if" statement:}\begin{semiverbatim} \begin{footnotesize}
+		\uncover<6->{let if = \\cond tv fv. (cond and tv) or (not cond and fv)}
+		\end{footnotesize}\end{semiverbatim}\end{block}
+\end{iit}
+\end{frame}
+
+\subsection{Y组合子}
+
+\begin{frame}[fragile]{似乎还有缺陷}
+\uncover<2->{如何实现递归？}
+
+\vspace{0.2cm}
+\uncover<3->{写一个计算阶乘的函数...}
+\begin{iit}
+	\item<4->[]\begin{alertblock}{Code}\begin{codetext}
+	let fac = \\n. if n == 0 then 1 else n * fac(n-1)
+	\end{codetext}\end{alertblock}
+\end{iit}
+\vspace{0.4cm}
+\uncover<5->{\color{red}Error! "fac" has not been defined}
+\end{frame}
+
+\begin{frame}[fragile]{把自身参数化}
+\uncover<2->{为了实现自己调用自己，不妨传一个参数进入}
+\vspace{0.2cm}
+\begin{iit}
+\item<3->[]\begin{code}
+let fac = \\self n. if n == 0 then 1 else n * self(self,n-1)
+\end{code}
+\vspace{0.3cm}
+\uncover{只不过传了一个函数重复调用而已}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{柯里化}
+	\uncover<2->{思考, 如果一个两个参数的函数，我们只传给它一个参数，会得到什么？}
+	\vspace{0.2cm}
+	\begin{description}
+		\item<3->[柯里化]是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术
+	\end{description}
+	\vspace{0.2cm}
+	\uncover<4->{有没有想到C++里的函数适配器bind1st, bind2nd}
+\end{frame}
+
+\begin{frame}[fragile]{不动点}
+\begin{iit}
+\item<2->{假如我们已经得到了一个完美的阶乘函数FAC}
+\item<3->{考虑一个有缺陷的阶乘函数:}
+\begin{iit}\item<3->[]\begin{code}
+let fac = \\self n. if n == 0 then 1 else n * self(n-1)
+\end{code}\end{iit}
+\item<4->{如果把FAC传给fac会发生什么？}
+\item<5->{\color{red}{FAC = fac(FAC)}}
+\item<6->{FAC是有缺陷的fac的不动点！}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{构造真正的递归函数}
+\begin{iit}
+\item<2->如果我们有一个神奇的函数Y，可以得到所有伪递归函数的真正递归函数
+\item<3->即：Y(F) = f
+\item<4->Y(F) = f = F(f) = F(Y(F))
+\item<5->如何构造这样的Y呢？
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Y组合子}
+\begin{iit}
+\item<2->考虑下面的一个函数：
+\item<3->[]\begin{code}let FAC_gen = \\self. fac(self(self))
+\end{code}
+\item<4->嵌套一下？
+\item<5->[]\begin{code}FAC_gen(FAC_gen) = fac(FAC_gen(FAC_gen))
+\end{code}
+\item<6->不妨令FAC = FAC\_gen(FAC\_gen)
+\item<7->fac(FAC) = FAC！
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Y组合子}
+\begin{iit}
+\item<2->[]于是对于每个伪递归，都找出一个类似FAC\_gen这样的函数就行了
+\item<3->[]\begin{exampleblock}{Y combinator}\begin{codetext}
+	let Y = \\f. let gen = \\self. f(self(self)); return gen(gen)
+\end{codetext}\end{exampleblock}
+\item<4->[]展开看一下：
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{验证}
+\begin{iit}
+\item<2->首先定义有缺陷版本：
+\item<3->$let\ fac\ =\ \backslash\ self\ n.\ if\ n\ ==\ 0\ then\ 1\ else\ n\ *\ self(n\ -\ 1)$
+\item<4->$Y(fac)\ =>$
+\item<5->[]$let\ gen\ =\ \backslash\ self.\ \textbf{fac}(self(self));\ return\ gen(gen)$
+\item<6->$Y(fac)\ =>\ gen(gen)\ =>\ fac(gen(gen))$
+\item<7->$fac(gen(gen))\ (n)\ =>\ if\ n\ ==\ 0\ then\ 1\ else\ n\ *\ \textbf{gen(gen)}(n-1)$
+\item<8->$gen(gen)\ =>\ fac(gen(gen))$
+\item<9->$\textbf{fac(gen(gen))}(n)\;=>\;$
+\item<10->[]$if\;n\;==\;0\;then\;1\;else\;n\;*\;\textbf{fac(gen(gen))}(n-1)$
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{图灵等价}
+\begin{iit}
+\item<2->Y组合子的推导成功相当于在$\lambda$ 演算公理中添加了一条公理
+\vspace{0.4cm}
+\begin{iit}
+\item<3->[]\large{可以在定义函数的过程中引用自身}
+\end{iit}
+\vspace{0.4cm}
+\item<4->于是可以证明，$\lambda$ 演算系统和图灵机是等价的
+\item<5->那和图灵停机问题等价的问题是什么呢？
+\vspace{0.4cm}
+\begin{iit}
+\item<6->[]\large{不存在一个算法能够判定任意两个$\lambda$ 函数是否等价}
+\end{iit}
+\vspace{0.4cm}
+\item<7->证明？
+\end{iit}
+\end{frame}
+
+\section{haskell编程}
+\subsection{初识haskell}
+
+\begin{frame}[fragile]{初识haskell}
+\begin{iit}
+\item<2->特性：
+\begin{iit}
+\item<3->部分求值(柯里化）
+\item<4->惰性求值
+\item<5->无副作用
+\item<6->....
+\end{iit}
+\end{iit}
+\end{frame}
+
+\subsection{基本语法}
+\begin{frame}[fragile]{第一个函数}
+\begin{iit}
+\item<2->计算阶乘：
+\item<3->[]\begin{code}
+fac :: Num a => a -> a
+fac 0 = 1
+fac n = n * fac(n - 1)
+\end{code}
+\vspace{0.2cm}
+\item<4->模式匹配
+\item<5->类型限制
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{列表}
+\begin{iit}
+\item<2->类似python里的列表
+\item<3->":"操作符和模式匹配可以很方便地处理列表
+\item<4->让我们自己来实现一个map函数
+\item<4->[]\begin{code}
+map' _ [] = []
+map' f (x:xs) = f x:map f xs
+\end{code}
+\item<5->试验一下
+\item<6->[]\begin{code}
+Prelude> map' (+3) [1,2,3]
+[4,5,6]
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{列表产生器}
+\begin{iit}
+\item<2->列表产生器是什么？
+\item<3->[]\begin{code}
+Prelude> [x | x<-[1..10], x `mod` 2 == 0]
+[2,4,6,8,10]
+\end{code}
+\item<4->学过数学的都能看明白吧
+\item<5->自己来实现一个快速排序：
+\item<6->[]\begin{code}
+qsort [] = []
+qsort (x:xs) = qsort[y | y<-xs, y <= x] ++ [x] ++ qsort[y | y <-xs, y > x]
+Prelude> qsort [1,3,5,3,2]
+[1,2,3,3,5]
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{函数的高级用法}
+\begin{iit}
+\item<2->使用.来复合两个函数：$f.g x = f(g(x))$
+\item<3->使用\$来改变函数求值顺序
+\item<4->综合运用：
+\item<4->[]\begin{code}
+main = interact \$ concatMap(++"\\n").takeWhile(/="42").lines
+\end{code}
+\item<5->[]\begin{code}
+main=interact\$(\\[x,y]->zipWith(\\a b->if a==b then '0' else '1')x y).lines
+\end{code}
+\end{iit}
+\end{frame}
+
+\subsection{输入与输出}
+\begin{frame}[fragile]{输入和输出}
+\begin{iit}
+\item<2->haskell里，用于执行输入和输出的函数被定义为IO action类型
+\item<3->[]\begin{code}
+main = do 
+    putStrLn "what's your name?" 
+    name <- getLine 
+    putStrLn ("Your name is " ++ name)
+\end{code}
+\item<4->putStrLn和getLine都为IO string类型
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{输入和输出}
+\begin{iit}
+\item<2->getLine其实类似与一个盒子，我们要使用<-从里面提取一个string
+\item<3->使用=号是达不到预期效果的
+\item<4->[]\begin{code}
+main = do 
+    name <- getLine
+    name' = getLine
+\end{code}
+\item<5->name'其实是一个函数，相当于getLine
+\item<6->于是可以执行name<-name'来从name'里提取字符串了
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{输入和输出}
+\begin{iit}
+\item<2->我们把一个IO action绑定到main函数，并在程序开始执行时触发
+\item<3->并使用do语句把若干个IO action函数绑定为一个
+\item<4->[]\begin{code}
+main = do 
+    line <- getLine 
+    if null line 
+        then return () 
+        else do 
+            putStrLn \$ revverseWords line 
+            main 
+\end{code}
+\item<5->注意return不是终止程序执行，而是返回一个IO action
+\end{iit}
+\end{frame}
+
+\subsection{type和typeclass}
+\begin{frame}[fragile]{Type和typeclass}
+\begin{iit}
+\item<2->Type即为通常意义下的类型，比如Int，Bool等
+\item<3->一个typeclass定义了一些函数，所有该typeclass的实例都支持这些函数
+\item<4->比如Eq的实例都支持判断是否相等，Ord的实例都支持比较大小
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Type和typeclass}
+\begin{iit}
+\item<2->我们先试着定义一个自己的Type
+\item<3->[]\begin{code}
+data Tree a = Empty | Node a (Tree a) (Tree a) deriving(Show, Read, Eq)
+\end{code}
+\item<3->此时Tree是什么类型呢？
+\item<4->Tree a才是一个合法的类型
+\item<5->Tree不过是一个类型构造子
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{kind：类型的类型}
+\begin{iit}
+\item<2->kind即为类型的类型，可用:k命令来检测某类型或者构造子的kind
+\item<3->Bool的结果为*
+\item<4->但是Tree的kind为*->* （有没有想到函数？）
+\item<5->BTW，Tree类型的一个插入函数：
+\item<6->[]\begin{code}
+ins x Empty = Node x Empty Empty
+ins x (Node a l r) 
+    | x <= a = Node a (ins x l) r
+    | otherwise = Node a l (ins x r)
+\end{code}
+\item<7-> 注意它是返回了一个新的Tree
+\end{iit}
+\end{frame}
+
+\section{函数式编程的抽象}
+\subsection{Functor}
+\begin{frame}[fragile]{抽象：Functor typeclass}
+\begin{iit}
+\item<2->Functor typeclass的实例是可以被map的对象
+\item<3->定义：
+\item<4->[]\begin{code}
+class Functor f where   
+    fmap :: (a -> b) -> f a -> f b
+\end{code}
+\item<5->注意f并不是一个类型，而是一个类型构造子。其kind为*->*
+\item<6->fmap接受一个函数，它把一个类型映射成另外一个
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Functor的例子}
+\begin{iit}
+\item<2->来看一下list是如何被定义为Functor的实例的
+\item<3->[]\begin{code}
+instance Functor [] where
+    fmap = map
+\end{code}
+\vspace{0.2cm}
+\item<4->另一个Functor的例子是I/O action:
+\item<5->[]\begin{code}
+instance Functor IO where 
+    fmap f action = do 
+        result <- action 
+        return (f result)
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Functor的例子}
+\begin{iit}
+\item<2->IO就是一个类型构造子。
+\item<3->:t getLine的结果为IO string
+\item<4->:k IO的结果为*->*
+\item<5->[]\begin{code}
+main = do line<-fmap reverse getLine
+          putStr line
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Functor的例子}
+\begin{iit}
+\item<2->(->)r 也是Functor的例子
+\item<3->(->)r 究竟代表什么？
+\item<4->a->r => (->) r a
+\item<5->(->) r a是一个类型，a也是一个类型
+\item<6->接受一个类型，返回一个新类型？
+\item<7->所以(->)r是一个类型构造子
+\item<8->于是(->)r也可以是Functor的实例
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Functor的例子}
+\begin{iit}
+\item<2->[]\begin{code}
+instance Functor ((->) r) where   
+    fmap f g = (\\x -> f (g x))
+\end{code}
+\item<3->我们已经知道fmap形态为fmap :: (a -> b) -> f a -> f b
+\item<4->把所有的f在心里替换为(->) r
+\item<5->于是就变成了fmap :: (a -> b) -> ((->) r a) -> ((->) r b)
+\item<6->换成中缀函数的形式：fmap :: (a->b)->(r->a)->(r->b）
+\item<7->这正是函数的复合！
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Functor law}
+\begin{iit}
+\item<2->Functor law:
+\begin{iit}
+\item<3->\Large{fmap的结果不改变原有Functor的拓扑顺序}
+\end{iit}
+\item<4->思考：如何把我们的Tree实例化为Functor
+\item<5->[]\begin{code}
+instance Functor Tree where
+    fmap f Empty = Empty
+    fmap f (Node a l r) = Node (f a) (fmap f l) (fmap f r)
+
+*Main> fmap (*2) (ins 3 (Node 2 Empty Empty))
+Node 4 Empty (Node 6 Empty Empty)
+\end{code}
+\end{iit}
+\end{frame}
+
+\subsection{Applicative functors}
+\begin{frame}[fragile]{进一步抽象:Applicative functors}
+\begin{iit}
+\item<2->如果我们对一个Functor实例A fmap一个多參函数会发生什么？
+\item<3->得到一个函数集合，函数之间保留A的拓扑顺序，不妨称这个函数集合类型为B
+\item<4->怎么把B上的每个函数都对应地作用于A上？
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Applicative functor的定义}
+\begin{iit}
+\item<2->先围观Applicative functor的定义：
+\item<3->[]\begin{code}
+class (Functor f) => Applicative f where   
+    pure :: a -> f a   
+    (<*>) :: f (a -> b) -> f a -> f b
+\end{code}
+\item<4->f被型别限定为Functor类型
+\item<5->pure接受一个值，返回一个包含那个值的Applicative functor
+\item<6-><*>接受一个装有函数的Functor和另一个functor，然后取出第一个functor里的函数对第二个做map
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Applicative functor例子}
+\begin{iit}
+\item<2->考虑如何把Maybe类型作为Applicative实例的
+\item<3->[]\begin{code}
+instance Applicative Maybe where   
+    pure = Just   
+    Nothing <*> _ = Nothing   
+    (Just f) <*> something = fmap f something
+\end{code}
+\item<4->pure的定义使用了柯里化噢
+\item<5->如果左边是Just，那么<*>会抽出其中的函数来map右面的值
+\item<6->如果任何一个函数是Nothing，那结果就为Nothing
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Applicative functor例子}
+\begin{iit}
+\item<2->试一下效果吧：
+\item<3->[]\begin{code}
+\uncover<3->{Prelude> Just (+3) <*> Just 9   
+Just 12}
+\uncover<4->{Prelude> Just (++"hahah") <*> Nothing   
+Nothing}
+\uncover<5->{Prelude> ghci> (++) <\$> Just "johntra" <*> Just "volta"   
+Just "johntravolta"}
+\end{code}
+\item<6-><\$>为一个语法糖，类似于中缀版的fmap
+\item<7->[]\begin{code}
+(<\$>) :: (Functor f) => (a -> b) -> f a -> f b   
+f <\$> x = fmap f x
+\end{code}
+\end{iit}
+\end{frame}
+
+\subsection{Monad}
+\begin{frame}[fragile]{从Functor, Applicative functor到Monad}
+\begin{iit}
+\item<2->因为许多的形态都都可以被map，所以抽象出了Functor这个typeclass
+\item<3->[]\begin{code}
+fmap :: (Functor f) => (a -> b) -> f a -> f b
+\end{code}
+\item<4->然后只要针对Functor撰写实例就行了
+\item<5->比如Maybe a, [a], IO a, 甚至是(->)r a
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{从Functor, Applicative functor到Monad}
+\begin{iit}
+\item<2->接下来我们发现如果a->b也被包含在一个Functor里呢
+\item<3->比如Just (*3)如何将它应用到Just 5上从而得到Just 15
+\item<4->于是我们得到了Applicative functor:
+\item<5->[]\begin{code}
+(<*>) :: (Applicative f) => f (a -> b) -> f a -> f b
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{从Functor, Applicative functor到Monad}
+\begin{iit}
+\item<2->现在问题来了：
+\begin{iit}
+\item<3->如何将一个具有context的值m a，丢进一个只接受普通值a的函数中
+\end{iit}
+\item<4->换句话说如何套用一个形态为a -> m b的函数至m a
+\item<5->我们要求的函数为：
+\item<6->[]\begin{code}
+(>>=) :: (Monad m) => m a -> (a -> m b) -> m b
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Monad}
+\begin{iit}
+\item<2->我们先来看一下Monad的实例
+\item<3->[]\begin{code}
+class Monad m where   
+    return :: a -> m a   
+ 
+    (>>=) :: m a -> (a -> m b) -> m b   
+ 
+    (>>) :: m a -> m b -> m b   
+    x >> y = x >>= \\_ -> y   
+ 
+    fail :: String -> m a   
+    fail msg = error msg
+\end{code}
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Monad}
+\begin{iit}
+\item<2->return是包装一个monadic value
+\item<3->$(>>=)$ 运算符是把monadic value传给一个接受普通值的函数f，f的返回值是一个monadic value
+\item<4->fail用于处理错误的情况
+\item<5->list，Maybe，IO action都是一个Monad
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Maybe Monad}
+\begin{iit}
+\item<2->Maybe的例子:
+\item<3->[]\begin{code}
+Prelude> Just 9 >>= (\\x->return(x+3))
+Just 12
+Prelude> Just 9 >>= (\\x->return(x+3)) >>= (\\x->Nothing)
+Nothing
+\end{code}
+\item<4->可以很好的处理Nothing这种情况
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{list Monad}
+\begin{iit}
+\item<2->list其实也是一个Monad
+\item<3->[]\begin{code}
+instance Monad [] where   
+    return x = [x]   
+    xs >>= f = concat (map f xs)   
+    fail _ = []
+\end{code}
+\item<4->例子：
+\item<5->[]\begin{code}
+Prelude> [1,2] >>= \\n -> ['a','b'] >>= \\ch -> return (n,ch)   
+[(1,'a'),(1,'b'),(2,'a'),(2,'b')]
+\end{code}
+\item<6->我们从monadic value取出普通值给函数，$>>=$ 会帮我们处理好一切关于context的问题
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{do语句}
+\begin{iit}
+\item<2->可以使用do语句把一些Monad的操作绑定在一起
+\item<3->[]\begin{code}
+f = do
+    x <- Just 4
+    y <- Just 5
+    return (x, y)
+\end{code}
+\item<4->有没有想到IO操作
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{函数的副作用}
+\begin{iit}
+\item<2->haskell里monad最重要的作用就是引入函数的副作用
+\item<3->比如Maybe类型的Nothing情况
+\item<4->比如IO action的输入输出操作
+\item<5->比如Error类型的出错信息
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Monad law}
+\begin{iit}
+\item<2->三条Monad定律：
+\begin{iit}
+\item<3->$(return x) >>= f == f x$
+\item<4->$m >>= return == m$
+\item<5->$(m >>= f) >>= g == m >>= (\backslash x -> f x >>= g)$
+\end{iit}
+\item<6->第一二条很显然
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{Monad law}
+\begin{iit}
+\item<2->第三条很类似于函数的复合
+\item<3->让我们回顾一下函数的复合
+\item<4->[]\begin{code}
+(.) :: (b -> c) -> (a -> b) -> (a -> c)   
+f . g = (\\x -> f (g x))
+\end{code}
+\item<5->于是f.(g.h)和(f.g).h显然等价的
+\item<6->仿照函数的复合我们可以合成monadic function的复合规则：
+\item<7->[]\begin{code}
+(<=<) :: (Monad m) => (b -> m c) -> (a -> m b) -> (a -> m c)   
+f <=< g = (\\x -> g x >>= f)
+\end{code}
+\item<8->到此我们就可以像操纵普通值和普通函数一样操纵monadic value和monadic function
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{End.}
+\begin{iit}
+\item<2->更加高级的东西：
+\begin{iit}
+\item<3->Arrows. 
+\item<4->Stream Fusion
+\item<5->Zipper
+\item<6->.....
+\end{iit}
+\item<7->欢迎大家自行阅读相关资料
+\item<8->推荐作业：使用haskell实现一个平衡树
+\end{iit}
+\end{frame}
+
+\begin{frame}[fragile]{End.}
+\begin{iit}
+\item<2-> 欢迎提问！
+\end{iit}
+\end{frame}
+\end{document}
